@@ -1,4 +1,4 @@
-package compute_test
+package compute
 
 import (
 	"testing"
@@ -9,6 +9,7 @@ import (
 func TestComputeInstance(t *testing.T) {
 	cai2hclTesting.AssertTestFiles(
 		t,
+		ConverterNames, ConverterMap,
 		"./testdata",
 		[]string{
 			"full_compute_instance",

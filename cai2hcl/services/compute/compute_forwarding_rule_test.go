@@ -1,14 +1,17 @@
-package compute_test
+package compute
 
 import (
 	"testing"
 
-	cai2hcl_testing "github.com/GoogleCloudPlatform/terraform-google-conversion/v5/cai2hcl/testing"
+	cai2hclTesting "github.com/GoogleCloudPlatform/terraform-google-conversion/v5/cai2hcl/testing"
 )
 
 func TestComputeForwardingRule(t *testing.T) {
-	cai2hcl_testing.AssertTestFiles(
+	cai2hclTesting.AssertTestFiles(
 		t,
+		ConverterNames, ConverterMap,
 		"./testdata",
-		[]string{"compute_forwarding_rule"})
+		[]string{
+			"full_compute_forwarding_rule",
+		})
 }

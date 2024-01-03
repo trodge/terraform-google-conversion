@@ -1,4 +1,4 @@
-package resourcemanager_test
+package resourcemanager
 
 import (
 	"testing"
@@ -9,6 +9,7 @@ import (
 func TestComputeInstance(t *testing.T) {
 	cai2hclTesting.AssertTestFiles(
 		t,
+		ConverterNames, ConverterMap,
 		"./testdata",
 		[]string{
 			"project_create",

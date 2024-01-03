@@ -10,11 +10,8 @@ import (
 	computeV1 "google.golang.org/api/compute/v1"
 )
 
-// ComputeForwardingRuleAssetType is a CAI asset type name.
+// ComputeForwardingRuleAssetType is the CAI asset type name for compute instance.
 const ComputeForwardingRuleAssetType string = "compute.googleapis.com/ForwardingRule"
-
-// ComputeForwardingRuleSchemaName is a TF resource schema name.
-const ComputeForwardingRuleSchemaName string = "google_compute_forwarding_rule"
 
 // ComputeForwardingRuleConverter for regional forwarding rule.
 type ComputeForwardingRuleConverter struct {
@@ -23,11 +20,9 @@ type ComputeForwardingRuleConverter struct {
 }
 
 // NewComputeForwardingRuleConverter returns an HCL converter for compute instance.
-func NewComputeForwardingRuleConverter(provider *tfschema.Provider) common.Converter {
-	schema := provider.ResourcesMap[ComputeForwardingRuleSchemaName].Schema
-
+func NewComputeForwardingRuleConverter(name string, schema map[string]*tfschema.Schema) common.Converter {
 	return &ComputeForwardingRuleConverter{
-		name:   ComputeForwardingRuleSchemaName,
+		name:   name,
 		schema: schema,
 	}
 }
