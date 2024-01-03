@@ -6,7 +6,7 @@ import (
 	"os"
 	"testing"
 
-	"github.com/GoogleCloudPlatform/terraform-google-conversion/v5/cai2hcl"
+	"github.com/GoogleCloudPlatform/terraform-google-conversion/v5/cai2hcl/common"
 	"github.com/GoogleCloudPlatform/terraform-google-conversion/v5/caiasset"
 	"go.uber.org/zap"
 
@@ -18,7 +18,7 @@ type _TestCase struct {
 	sourceFolder string
 }
 
-func AssertTestFiles(t *testing.T, folder string, fileNames []string) {
+func AssertTestFiles(t *testing.T, converterNames map[string]string, converterMap map[string]common.Converter, folder string, fileNames []string) {
 	cases := []_TestCase{}
 
 	for _, name := range fileNames {
@@ -31,7 +31,7 @@ func AssertTestFiles(t *testing.T, folder string, fileNames []string) {
 		t.Run(c.name, func(t *testing.T) {
 			t.Parallel()
 
-			err := assertTestData(c)
+			err := assertTestData(c, converterNames, converterMap)
 			if err != nil {
 				t.Fatal(err)
 			}
@@ -39,7 +39,7 @@ func AssertTestFiles(t *testing.T, folder string, fileNames []string) {
 	}
 }
 
-func assertTestData(testCase _TestCase) (err error) {
+func assertTestData(testCase _TestCase, converterNames map[string]string, converterMap map[string]common.Converter) (err error) {
 	fileName := testCase.name
 	folder := testCase.sourceFolder
 
@@ -64,9 +64,7 @@ func assertTestData(testCase _TestCase) (err error) {
 		return err
 	}
 
-	got, err := cai2hcl.Convert(assets, &cai2hcl.Options{
-		ErrorLogger: logger,
-	})
+	got, err := common.Convert(assets, converterNames, converterMap)
 	if err != nil {
 		return err
 	}

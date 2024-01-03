@@ -485,13 +485,6 @@ func expandGKEHub2FeatureFleetDefaultMemberConfigConfigmanagementConfigSyncOci(v
 		transformed["syncWaitSecs"] = transformedSyncWaitSecs
 	}
 
-	transformedVersion, err := expandGKEHub2FeatureFleetDefaultMemberConfigConfigmanagementConfigSyncOciVersion(original["version"], d, config)
-	if err != nil {
-		return nil, err
-	} else if val := reflect.ValueOf(transformedVersion); val.IsValid() && !tpgresource.IsEmptyValue(val) {
-		transformed["version"] = transformedVersion
-	}
-
 	return transformed, nil
 }
 
@@ -512,10 +505,6 @@ func expandGKEHub2FeatureFleetDefaultMemberConfigConfigmanagementConfigSyncOciGc
 }
 
 func expandGKEHub2FeatureFleetDefaultMemberConfigConfigmanagementConfigSyncOciSyncWaitSecs(v interface{}, d tpgresource.TerraformResourceData, config *transport_tpg.Config) (interface{}, error) {
-	return v, nil
-}
-
-func expandGKEHub2FeatureFleetDefaultMemberConfigConfigmanagementConfigSyncOciVersion(v interface{}, d tpgresource.TerraformResourceData, config *transport_tpg.Config) (interface{}, error) {
 	return v, nil
 }
 
